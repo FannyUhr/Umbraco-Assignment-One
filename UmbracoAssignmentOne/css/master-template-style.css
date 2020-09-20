@@ -1,0 +1,20 @@
+#nav {
+    background: #90a4ae;
+}
+
+#nav a{
+    text-decoration: none;
+    color: #fff;
+}
+#nav a:hover{
+    font-size: 110%;
+    
+}
+
+#nav .close {
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}

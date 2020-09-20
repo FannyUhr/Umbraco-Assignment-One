@@ -1,0 +1,109 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<html>
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/css/homepage-style.css")" />
+	</head>
+
+		<!-- Banner -->
+			<section id="banner">
+				<i class="icon fa-diamond"></i>
+				<h2>@Model.Value("pageTitle")</h2>
+				<p>@Model.Value("bodyText")</p>
+				<ul class="actions">
+					<li><a href="#" class="btn-home-banner">@Model.Value("bannerButtonText")</a></li>
+				</ul>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper style1">
+				<div class="inner">
+					
+					<article class="feature left">
+					    <span class="image">
+					    @{
+                            var firstHomepageCardImage = Model.Value<IPublishedContent>("firstHomepageCardImage");
+                            if (firstHomepageCardImage != null)
+                            {
+                                <img src="@firstHomepageCardImage.Url" />
+                            }
+                        }
+                        </span>
+						<div class="content">
+							<h2>@Model.Value("firstHomepageCardTitle")</h2>
+							<p>@Model.Value("firstHomepageCardTextBody")</p>
+							<ul class="actions">
+								<li>
+									<a href="#" class="button alt homepage-white-btn">@Model.Value("firstHomepageCardButton")</a>
+								</li>
+							</ul>
+						</div>
+					</article>
+					
+					<article class="feature right">
+						<span class="image">
+					    @{
+                            var secondHomepageCardImage = Model.Value<IPublishedContent>("secondHomepageCardImage");
+                            if (secondHomepageCardImage != null)
+                            {
+                                <img src="@secondHomepageCardImage.Url" />
+                            }
+                        }
+                        </span>
+						<div class="content">
+							<h2>@Model.Value("secondHomepageCardTitle")</h2>
+							<p>@Model.Value("secondHomepageCardTextBody")</p>
+							<ul class="actions">
+								<li>
+									<a href="#" class="button alt">@Model.Value("secondHomepageCardButton")</a>
+								</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper special">
+				<div class="inner">
+					<header class="major narrow">
+						<h2>@Model.Value("multiContentTitle")</h2>
+						<p>@Model.Value("multiContentTextBody")</p>
+					</header>
+					<div class="image-grid">
+					    @{
+                            var multiContentImages = Model.Value<IEnumerable<IPublishedContent>>("multiContentImages");
+                            foreach (var item in multiContentImages.Take(8))
+                            {
+                                <a href="#" class="image"><img src="@item.Url"/></a>
+                                
+                            }
+                        }
+						
+					</div>
+					<ul class="actions">
+						<li><a href="#" class="button big alt">@Model.Value("multiContentButton")</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					<header class="major narrow	">
+						<h2>@Model.Value("bottomHomepageTitle")</h2>
+						<p>@Model.Value("bottomHomepageTextBody")</p>
+					</header>
+					<ul class="actions">
+						<li><a href="#" class="button big alt">@Model.Value("bottomHomepageButton")</a></li>
+					</ul>
+				</div>
+			</section>
+
+		
+			
+	</html>

@@ -1,0 +1,47 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ProductMainPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<html>
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/css/products-main-style.css")" />
+	</head>
+
+    <!-- Banner -->
+    <section id="banner">
+    	<h2>@Model.Value("productPageTitle")</h2>
+    	<p>@Model.Value("productsBodyText")</p>
+    </section>
+    
+    @{
+    	var selection = Umbraco.Content(Guid.Parse("454577b6-5d43-4662-a0b1-6ed918702485"))
+        .ChildrenOfType("productItem")
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate);
+    }
+    <ul class="row product-item-container">
+    	@foreach (ContentModels.ProductItem item in selection)
+    	{
+    		<a href="@item.Url">
+    		<article class="special product-item">
+                <div>
+                    <img class="product-item-img" src="@item.Photo.Url" style="width:270px"/>
+                </div>
+                <div>
+                    <a class="product-item-title" href="@item.Url">@item.Name</a>
+                </div>
+                 <div>
+                    <h3 class="product-item-price">$@item.ProductPrice</h3>
+                </div>
+                <div>
+                    <a class="product-item-btn" href="@item.Url">@Model.Value("productBuyButton")</a>
+                </div>
+                
+            </article>
+            </a>
+    	}
+    </ul>
+
+</html>

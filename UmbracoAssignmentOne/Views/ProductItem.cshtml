@@ -1,0 +1,49 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ProductItem>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+
+<html>
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/css/product-items-style.css")" />
+	</head>
+	
+	
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="product-item-page-container">
+            
+            <div class="product-item-page-left">
+                @{
+                    var photo = Model.Value<IPublishedContent>("photo");
+                    if (photo != null)
+                    {
+                        <img src="@photo.Url" style="width:400px" />
+                    }
+                }
+            </div>
+            
+            <div class="product-item-page-right">
+                <h1 class="product-item-page-title">@Model.Value("productItemTitle")</h1>
+                <h1 class="product-item-page-price">$@Model.Value("productPrice")</h1>
+                <h4 class="product-item-h4 article-number-title">
+                    
+                    <div>
+                        Article Number: <p class="product-item-p article-number-text">@Model.Value("articleNumber")</p>
+                    </div>
+                    
+                </h4>
+                
+                <h4 class="product-item-h4">Description:</h4>
+                <p class="product-item-p">@Model.Value("productItemContent")</p>
+                <a href="" class="product-item-page-btn">Add to cart</a>
+            </div>
+            
+        </div>
+    </section>
+
+</html>
